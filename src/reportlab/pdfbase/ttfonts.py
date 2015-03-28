@@ -533,8 +533,9 @@ class TTFontFile(TTFontParser):
             usWeightClass = self.read_ushort()
             self.skip(2)
             fsType = self.read_ushort()
-            if fsType == 0x0002 or (fsType & 0x0300) != 0:
-                raise TTFError('Font does not allow subsetting/embedding (%04X)' % fsType)
+            #Hack to allow fonts in private library
+            #if fsType == 0x0002 or (fsType & 0x0300) != 0:
+            #    raise TTFError('Font does not allow subsetting/embedding (%04X)' % fsType)
             self.skip(58)   #11*2 + 10 + 4*4 + 4 + 3*2
             sTypoAscender = self.read_short()
             sTypoDescender = self.read_short()
